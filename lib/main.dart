@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(DicePage());
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
   @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  @override
+  int leftDiceNumber = 4;
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -25,9 +32,14 @@ class DicePage extends StatelessWidget {
                 Expanded(
                   child: TextButton(
                     onPressed: () {
+                      if (leftDiceNumber < 6 && leftDiceNumber > 0) {
+                        leftDiceNumber += 1;
+                      } else {
+                        leftDiceNumber -= 1;
+                      }
                       print('You pressed the left button!');
                     },
-                    child: Image.asset('images/dice1.png'),
+                    child: Image.asset('images/dice$leftDiceNumber.png'),
                   ),
                 ),
                 Expanded(
