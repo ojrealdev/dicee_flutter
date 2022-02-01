@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() => runApp(DicePage());
 
@@ -10,6 +11,7 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   @override
   int leftDiceNumber = 4;
+  int rightDiceNumber = 1;
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +22,9 @@ class _DicePageState extends State<DicePage> {
             child: Text(
               'Dicee by Ochieng',
               style: TextStyle(
-                  color: Colors.white, fontFamily: 'Supermercado One'),
+                  color: Colors.white,
+                  fontFamily: 'Supermercado One',
+                  fontSize: 30),
             ),
           ),
           backgroundColor: Colors.red,
@@ -32,12 +36,11 @@ class _DicePageState extends State<DicePage> {
                 Expanded(
                   child: TextButton(
                     onPressed: () {
-                      if (leftDiceNumber < 6 && leftDiceNumber > 0) {
-                        leftDiceNumber += 1;
-                      } else {
-                        leftDiceNumber -= 1;
-                      }
-                      print('You pressed the left button!');
+                      setState(() {
+                        leftDiceNumber = Random().nextInt(6 - 1) + 1;
+                        rightDiceNumber = Random().nextInt(5) + 1;
+                      });
+                      print('You pressed Left Dice Number $leftDiceNumber');
                     },
                     child: Image.asset('images/dice$leftDiceNumber.png'),
                   ),
@@ -45,9 +48,13 @@ class _DicePageState extends State<DicePage> {
                 Expanded(
                   child: TextButton(
                     onPressed: () {
-                      print('You pressed the right button!');
+                      setState(() {
+                        rightDiceNumber = Random().nextInt(5) + 1;
+                        leftDiceNumber = Random().nextInt(6 - 1) + 1;
+                      });
+                      print('You pressed Right Dice Number $rightDiceNumber');
                     },
-                    child: Image.asset('images/dice2.png'),
+                    child: Image.asset('images/dice$rightDiceNumber.png'),
                   ),
                 ),
               ],
