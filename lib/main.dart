@@ -12,8 +12,8 @@ class DicePage extends StatelessWidget {
           title: Center(
             child: Text(
               'Dicee by Ochieng',
-              style:
-                  TextStyle(color: Colors.blue, fontFamily: 'Supermercado One'),
+              style: TextStyle(
+                  color: Colors.white, fontFamily: 'Supermercado One'),
             ),
           ),
           backgroundColor: Colors.red,
@@ -23,14 +23,18 @@ class DicePage extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Image.network('images/dice1.png'),
+                  child: TextButton(
+                    onPressed: () {
+                      print('You pressed the left button!');
+                    },
+                    child: Image.asset('images/dice1.png'),
                   ),
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(5.0),
+                  child: TextButton(
+                    onPressed: () {
+                      print('You pressed the right button!');
+                    },
                     child: Image.asset('images/dice2.png'),
                   ),
                 ),
