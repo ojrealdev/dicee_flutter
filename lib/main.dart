@@ -13,6 +13,14 @@ class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 4;
   int rightDiceNumber = 1;
 
+  //update image number when image is clicked
+  changeDiceFace() {
+    leftDiceNumber = Random().nextInt(6 - 1) + 1;
+    rightDiceNumber = Random().nextInt(5) + 1;
+    print('Left Dice is: $leftDiceNumber');
+    print('Right Dice is: $rightDiceNumber');
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -37,10 +45,8 @@ class _DicePageState extends State<DicePage> {
                   child: TextButton(
                     onPressed: () {
                       setState(() {
-                        leftDiceNumber = Random().nextInt(6 - 1) + 1;
-                        rightDiceNumber = Random().nextInt(5) + 1;
+                        changeDiceFace();
                       });
-                      print('You pressed Left Dice Number $leftDiceNumber');
                     },
                     child: Image.asset('images/dice$leftDiceNumber.png'),
                   ),
@@ -49,10 +55,8 @@ class _DicePageState extends State<DicePage> {
                   child: TextButton(
                     onPressed: () {
                       setState(() {
-                        rightDiceNumber = Random().nextInt(5) + 1;
-                        leftDiceNumber = Random().nextInt(6 - 1) + 1;
+                        changeDiceFace();
                       });
-                      print('You pressed Right Dice Number $rightDiceNumber');
                     },
                     child: Image.asset('images/dice$rightDiceNumber.png'),
                   ),
